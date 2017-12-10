@@ -1,0 +1,54 @@
+plugins {
+    id "java"
+    id "idea"
+    id "jaci.openrio.gradle.GradleRIO" version "2017.10.30"
+}
+def TEAM = 2767 // edit for your team to deploy
+def ROBOT_CLASS = "org.example.Robot"
+
+// Define my targets (RoboRIO) and artifacts (deployable files)
+// This is added by GradleRIO's backing project EmbeddedTools.
+deploy {
+    targets {
+        target("roborio", jaci.openrio.gradle.frc.RoboRIO) {
+            team = TEAM
+        }
+    }
+    artifacts {
+        artifact('frcJava', jaci.openrio.gradle.frc.FRCJavaArtifact) {
+            targets << "roborio"
+        }
+    }
+}
+
+// Thirdcoast has some additional dependencies from these repositories
+repositories {
+    jcenter()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' } // nanohttpd
+    maven { url  "https://dl.bintray.com/strykeforce/maven" } // thirdcoast
+}
+
+// Defining my dependencies. In this case, WPILib (+ friends), CTRE Toolsuite (Talon SRX)
+dependencies {
+    compile 'org.strykeforce.thirdcoast:core:17.1.4'
+    compile wpilib()
+    compile ctre()
+
+    // uncomment to use NavX
+//    compile navx()
+
+    // uncomment to see Thirdcoast log messages
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+}
+
+// Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
+// in order to make them all available at runtime. Also adding the manifest so WPILib
+// knows where to look for our Robot Class.
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    manifest jaci.openrio.gradle.GradleRIOPlugin.javaManifest(ROBOT_CLASS)
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.2.1'
+}
