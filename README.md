@@ -1,1 +1,36 @@
 # Third Coast Telemetry Robot Example
+
+This is a quick-start example of using Third Coast Telemetry and Grapher client with a Talon SRX. If you have questions, see the [thirdcoast-users forum](https://groups.google.com/forum/#!forum/thirdcoast-users).
+
+## Instructions
+
+To run with the included [GradleRIO](https://github.com/Open-RIO/GradleRIO) configuration:
+
+1. Edit `build.gradle` and change this line to your team number:
+
+  ```
+  def TEAM = 2767 // edit for your team
+  ```
+
+2. Go to this project directory in a terminal window with the JDK on the path.
+
+3. Compile the project with `gradlew build` (Windows) or `./gradlew build` (macOS/Linux).
+
+4. Deploy to robot with `gradlew deploy` (Windows) or `./gradlew deploy` (macOS/Linux).
+
+## Dependencies
+
+If using Eclipse, you will need to configure dependencies. This project has the following dependencies.
+
+### Required Maven Repositories
+
+- jCenter or Maven Central
+- https://oss.sonatype.org/content/repositories/snapshots
+- https://dl.bintray.com/strykeforce/maven
+
+### Jar Files
+
+See `build.gradle` for current versions.
+
+- org.strykeforce.thirdcoast:core:VERSION
+- 'org.slf4j:slf4j-simple:VERSION', optional for logging
