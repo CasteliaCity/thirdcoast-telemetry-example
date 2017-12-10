@@ -20,7 +20,7 @@ To run with the included [GradleRIO](https://github.com/Open-RIO/GradleRIO) conf
 
 ## Dependencies
 
-If using Eclipse, you will need to configure dependencies. This project has the following dependencies.
+This project has the following Maven dependencies. Alternatively, you can manually download the Third Coast library JAR file from [Bintray](https://bintray.com/strykeforce/maven/thirdcoast).
 
 ### Required Maven Repositories
 
