@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "idea"
-    id "jaci.openrio.gradle.GradleRIO" version "2017.10.30"
+    id "jaci.openrio.gradle.GradleRIO" version "2017.11.27"
 }
 def TEAM = 2767 // edit for your team
 def ROBOT_CLASS = "org.example.Robot"
@@ -25,7 +25,6 @@ deploy {
 repositories {
     jcenter()
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' } // nanohttpd
-    maven { url  "https://dl.bintray.com/strykeforce/maven" } // thirdcoast
 }
 
 // Defining my dependencies. In this case, WPILib (+ friends), CTRE Toolsuite (Talon SRX)
